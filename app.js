@@ -13,9 +13,7 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-const publicDirectoryPath = path.join(__dirname, "client/build")
-
-app.use(express.static(publicDirectoryPath))
+app.use(express.static(path.join(__dirname, "client/build")))
 app.use(cors())
 app.use(router)
 
@@ -62,6 +60,10 @@ io.on("connection", socket => {
             })
         }
     })
+})
+
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"))
 })
 
 const server = app.listen(process.env.PORT || 3001, function () {
