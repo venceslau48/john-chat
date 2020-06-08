@@ -13,7 +13,9 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
-app.use(express.static(path.join(__dirname, "client/build")))
+const port = process.env.PORT || 3000
+
+app.use(express.static(path.join(__dirname, "./client/build")))
 app.use(cors())
 app.use(router)
 
@@ -62,11 +64,6 @@ io.on("connection", socket => {
     })
 })
 
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"))
-})
-
-const server = app.listen(process.env.PORT || 3001, function () {
-    const port = server.address().port
-    console.log("Server running on port: " + port)
+server.listen(port, () => {
+    console.log(`Server is up on port ${port}`)
 })
