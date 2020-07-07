@@ -6,4 +6,4 @@
 
 Simple chat app using Node.js and Web Sockets in the server side, react for client side.
 
-Developed by John Vences - copyright @ 2020
+Developed by [John Vences](https://github.com/venceslau48) - copyright @ 2020
